@@ -1,0 +1,715 @@
+<html>
+
+<head>
+    <!--
+    INICIA
+    ESTILOS Y GEOMETRIA DE ENTORNO
+-->
+    <style>
+        body {
+            /* fonts */
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            color: #1d1d1d;
+            writing-mode: horizontal-tb !important;
+            text-rendering: optimizeSpeed;
+            letter-spacing: normal;
+            word-spacing: normal;
+            line-height: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            /* display */
+            overflow: hidden;
+            background: radial-gradient(ellipse at top, rgb(150, 100, 230, 0.2), transparent), radial-gradient(ellipse at bottom, rgb(14, 136, 167, 0.2), transparent), -webkit-linear-gradient(300deg, rgba(198, 234, 246, 1) 0%, rgba(193, 230, 238, 1) 30%, rgba(191, 237, 227, 0.8) 60%, rgba(191, 237, 227, 1) 100%);
+            transition: all 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        div {
+
+            border-radius: calc(var(--Spacer) * 0.75);
+        }
+
+        .scrollbar-type-1 ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sb-cyan ::-webkit-scrollbar-thumb {
+            background-color: #1ba1e2 !important;
+        }
+
+        .scrollbar-type-1 ::-webkit-scrollbar-thumb {
+            background-color: rgba(101, 95, 95, 0.71);
+        }
+
+        .scrollbar-type-1 ::-webkit-scrollbar-track {
+            background-color: #e8e8e8;
+        }
+    </style>
+    <!--
+    TERMINA
+    ESTILOS Y GEOMETRIA DE ENTORNO
+-->
+    <!--
+    INCIA
+    ESTILOS Y GEOMETRIA DE CINTAS (TABS)
+-->
+    <!-- a big work from 2008 http://bradclicks.com/CSSplay/tabs.html -->
+    <style>
+        :root {
+            --MsgBanda: 20px;
+            --ToolsBanda: 76px;
+            --AltoBanda: calc(var(--ToolsBanda) + var(--MsgBanda));
+            --SmallFont: calc(0.5 * var(--MsgBanda));
+            --BigFont: calc(0.625 * var(--MsgBanda));
+            --Spacer: calc(0.25 * var(--MsgBanda));
+            --change: all 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ToolsContainer {
+            width: 100vw;
+            overflow-y: visible;
+            display: grid;
+            grid-template-rows: var(--ToolsBanda) var(--MsgBanda);
+            font-size: var(--BigFont);
+        }
+
+        .ToolBar {
+            grid-row-start: 1;
+            grid-row-end: span 1;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            left: var(--SmallFont);
+            padding: 0;
+            display: -webkit-box;
+            display: flex;
+            cursor: default;
+            background-color: inherit;
+            position: relative;
+            -webkit-box-align: start;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+        }
+
+        .ToolBarName {
+            grid-row-start: var(--Spacer);
+            grid-row-end: span var(--Spacer);
+            margin: 0;
+            padding: 0;
+            padding-top: var(--Spacer);
+            position: relative;
+            bottom: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: baseline;
+            border-top: 1px solid #c4c9ce;
+            font-size: var(--SmallFont);
+        }
+
+        /*
+
+    INICIA TABULADORES
+
+    */
+        /* ================== CINTAS-TOOLS */
+        .Cintas {
+            position: absolute;
+            background: rgba(238, 250, 249, 0.3);
+            height: calc(3 * var(--SmallFont));
+            clear: both;
+            margin: 0;
+            top: 0;
+            left: 0;
+            width: 100vw;
+        }
+
+        .Cinta {
+            float: left;
+        }
+
+        .Cinta label {
+            border: 1px solid transparent;
+        }
+
+        .inicio label {
+            background: rgb(0, 202, 185);
+            color: rgb(217, 233, 231);
+            border: 1px solid rgb(37, 177, 165);
+            font-weight: 600;
+        }
+
+        .inicio label:active {
+            background: rgb(70, 214, 202);
+            color: #FFF;
+            border: 1px solid rgb(37, 177, 165);
+        }
+
+        .Cinta label,
+        .inicio label {
+            font-size: calc(1.1 * var(--SmallFont));
+            padding-left: var(--SmallFont);
+            padding-right: var(--SmallFont);
+            padding-top: calc(3 * var(--Spacer));
+            padding-bottom: var(--Spacer);
+            margin-top: calc(3 * var(--Spacer));
+            margin-left: calc(-0.8 * var(--Spacer));
+            position: relative;
+            left: 1px;
+            top: var(--Spacer);
+        }
+
+        .Cinta [type=radio] {
+            opacity: 0;
+            display: none;
+        }
+
+        .CintaWrapper {
+            position: absolute;
+            top: calc(2.5 * var(--SmallFont));
+            left: 0;
+            background: rgb(225, 231, 238, 0.8);
+            bottom: 0;
+            padding: 0px;
+            border: 1px solid #dadbdc;
+            height: var(--AltoBanda);
+            box-shadow: rgba(14, 143, 148, 0.05) 0px var(--Spacer) calc(2 * var(--Spacer)) -1px, rgba(1, 32, 73, 0.01) 0px var(--Spacer) calc(2 * var(--Spacer)) -1px;
+        }
+
+        .CintaWrapper>* {
+            opacity: 0;
+            transition: var(--change);
+        }
+
+        [type=radio]:checked~label {
+            color: #1d1d1d;
+            background: rgb(225, 231, 238, 0.8);
+            border: 1px solid #dadbdc;
+            border-bottom: 1px solid rgb(225, 231, 238, 0.8);
+            z-index: 2;
+        }
+
+        [type=radio]:checked~label~.CintaWrapper {
+            z-index: 1;
+        }
+
+        [type=radio]:checked~label~.CintaWrapper>* {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ======================== BOTON */
+        .CajaBotonCompuesto,
+        .BotonGrande {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            cursor: default;
+            box-sizing: border-box;
+            background-color: transparent;
+            margin-left: calc(1 * var(--Spacer));
+            padding-left: var(--Spacer);
+            border-width: 1px;
+            border-style: outset;
+            border-color: transparent;
+            border-radius: calc(var(--Spacer) * 0.5);
+            transition: var(--change);
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        .BotonGrande {
+            height: calc(var(--ToolsBanda) / 1.3);
+            width: calc(var(--ToolsBanda) / 1.6);
+        }
+
+        .CajaBotonCompuesto {
+            height: calc(var(--ToolsBanda) / 1.3);
+            width: calc(var(--ToolsBanda) / 1.3);
+        }
+
+        .DropDownRow:hover,
+        .CajaBotonCompuesto:hover,
+        .dropdown-content a:hover,
+        .BotonGrande:hover {
+            background-color: rgba(164, 206, 249, 0.05) !important;
+            border-color: #1979ca;
+        }
+
+        .DropDownRow:focus,
+        .DropDownRow:focus-visible,
+        .CajaBotonCompuesto:focus,
+        .CajaBotonCompuesto:focus-visible,
+        .BotonGrande:focus-visible,
+        .BotonGrande:focus {
+            background-color: rgba(164, 206, 249, 0.35) !important;
+            border-color: #1979ca;
+        }
+
+        .DropDownRow:active,
+        .CajaBotonCompuesto:active,
+        .dropdown-content a:active,
+        .BotonGrande:active {
+            background-color: rgba(164, 206, 249, 0.534) !important;
+            border-color: #045ea8;
+        }
+
+        .BotonGrande .Icono+.Title {
+            margin-top: 8px;
+        }
+
+        .BotonGrande .Title {
+            font-size: var(--BigFont);
+        }
+
+        .BotonCompuesto {
+            display: grid;
+            grid-template-rows: calc(var(--BigFont) + var(--MsgBanda)) auto;
+            margin: 0;
+            padding: 0;
+            align-content: space-between;
+            justify-items: center;
+            align-items: end;
+            justify-content: space-between;
+        }
+
+        .BotonCompuestoBtn,
+        * .Icono * {
+            height: calc(var(--BigFont) + var(--MsgBanda));
+            max-width: calc(var(--BigFont) + var(--MsgBanda));
+            font-size: calc(var(--BigFont) * 2);
+            line-height: calc(var(--BigFont) + var(--MsgBanda));
+        }
+
+        img {
+            vertical-align: middle;
+            border-style: none;
+            max-width: 100%;
+        }
+
+        /* =============== BOTON-COMPUESTO */
+
+        .BotonCompuestoBtn,
+        .BotonCompuestoBtn:hover,
+        .ButonCompuestoBtn:focus,
+        .ButonCompuestoBtn:focus-visible,
+        .ButonCompuestoBtn:active {
+            position: fixed;
+            display: flex;
+            cursor: default;
+            position: relative;
+            -webkit-box-align: start;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+            background-color: transparent !important;
+            border-style: none;
+            border-color: transparent !important;
+            border-width: 0;
+        }
+
+        .ButonCompuestoDpDw {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            display: flex;
+            border-top: 1px solid #c4c9ce;
+            font-size: var(--SmallFont);
+        }
+
+        /* ===================== DropDown */
+        .dropbtn {
+            background-color: transparent;
+            border: none;
+            margin-left: calc(var(--Spacer) * -1);
+        }
+
+        /*
+        .dropbtn:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+*/
+        .dropdown {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            align-content: flex-end;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            padding-top: 6px;
+        }
+
+        .dropdown-content {
+            color: #3b5c7f;
+            list-style: none inside;
+            margin-left: var(--MsgBanda);
+            float: left;
+            display: none;
+            position: absolute;
+            background-color: rgb(225, 231, 238);
+            padding: 2px;
+            box-shadow: rgba(0, 0, 0, 0.15) var(--Spacer) var(--Spacer) var(--Spacer);
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content li {
+            border: 1px solid transparent;
+            width: 23px;
+            height: 22px;
+        }
+
+        .dropdown-content li,
+        .dropdown-content a {
+            display: block;
+            position: relative;
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .dropdown-content a {
+            line-height: 24px;
+            padding: 0 8px;
+            border-left: 1px solid #dcddde;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .divider {
+            display: block;
+            height: 3px !important;
+            padding: 0;
+            position: relative;
+        }
+
+        .DropDownrow {
+            display: grid;
+            grid-template-columns: 27px 90px;
+            align-content: center;
+            justify-content: start;
+            align-items: start;
+            justify-items: start;
+        }
+
+        .checked::before,
+        .checked-one::before {
+            position: absolute;
+            display: block;
+            content: " ";
+        }
+
+        .checked,
+        .checked-one {
+            color: #3b5c7f;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .checked-empty {
+            /*content: "\2713\0020";*/
+            content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d=''/></svg>");
+        }
+
+        .checked-one {
+            /*content: "\2713\0020";*/
+            content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M18.9 35.7 7.7 24.5l2.15-2.15 9.05 9.05 19.2-19.2 2.15 2.15Z'/></svg>");
+        }
+
+        .checked {
+            content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M14.5 33.5h7v-7h-7Zm12 0h7v-7h-7Zm-12-12h7v-7h-7Zm12 0h7v-7h-7ZM9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h30q1.2 0 2.1.9.9.9.9 2.1v30q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h30V9H9v30ZM9 9v30V9Z'/></svg>");
+        }
+
+        .CommandMsg {
+            width: var(--MsgBanda);
+            position: relative;
+            color: #3b5c7f;
+        }
+
+        /* ================= DIVISOR */
+        .Divisor {
+            display: block;
+            position: relative;
+            height: 90%;
+            margin: 0 4px;
+            width: 1px;
+            /*
+            background-color: #dadbdc;
+            */
+            border-left:1px solid #c4c9ce;
+        }
+
+        /* ================= BOTONES-GRUPO */
+    </style>
+    <!--
+TERMINA
+ESTILOS Y GEOMETRIA DE CINTAS (TABS)
+-->
+    <!--
+INCIA
+ESTRUCTURA DE CINTAS (TABS)
+-->
+</head>
+
+<body>
+    <div class="Cintas">
+        <div class="Cinta inicio">
+            <input type="radio" id="Cinta-1" name="Cinta-group-2" onclick="Filemenu()">
+            <label for="Cinta-1">Inicio</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <!-- ESTE ESPACIO ES PARA DATOS DE LA EMPRESA -->
+                        <h3>Empresa</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Edicion de Empresa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Cinta">
+            <input type="radio" id="Cinta-2" name="Cinta-group-2" checked="">
+            <label for="Cinta-2">Empresa</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <h3>AQUI VAN LAS HERRAMIENTAS</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Edicion de Empresa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+
+            INICIA ESPACIO DE DESARROLLO
+
+        -->
+        <!-- INICIA CINTA 3 -->
+        <div class="Cinta">
+            <input type="radio" id="Cinta-3" name="Cinta-group-2">
+            <label for="Cinta-3">Por Cobrar</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <!-- INICIA HERRAMIENTAS -->
+                    <div class="ToolBar">
+                        <!--
+                            INICIA BOTON GRANDE SENCILLO
+                        -->
+                        <button class="BotonGrande">
+                            <span class="Icono">
+                                <img src="./img/save.svg" width="">
+                            </span>
+                            <span class="Title">Share</span>
+                        </button>
+                        <!--
+                            TERMINA BOTON GRANDE SENCILLO
+                        -->
+                        <!--
+                            INICIA BOTON COMPUESTO
+                        -->
+                        <span class="CajaBotonCompuesto">
+                            <div class="BotonCompuesto">
+                                <button class="BotonCompuestoBtn">
+                                    <img src="./img/save.svg" width="">
+                                </button>
+                                <!--span class="Title">Share</span-->
+                                <div class="dropdown">
+                                    <button class="dropbtn">Datasets</button>
+                                    <div class="dropdown-content">
+                                        <div class="DropDownrow">
+                                            <li class="checked"></li><a href="#">Modification</a>
+                                        </div>
+                                        <div class="DropDownrow">
+                                            <li class="checked"></li><a href="#">Type</a>
+                                        </div>
+                                        <div class="DropDownrow">
+                                            <li class="checked"></li><a href="#">Size</a>
+                                        </div>
+                                        <div class="DropDownrow">
+                                            <li class="checked-empty"></li><a href="#">Creating</a>
+                                        </div>
+                                        <div class="DropDownrow">
+                                            <li class="checked-empty"></li><a href="#">Authors</a>
+                                        </div>
+                                        <div class="DropDownrow">
+                                            <li class="checked-one"></li><a href="#">Tags</a>
+                                        </div>
+                                        <div class="DropDownrow">
+                                            <li class="checked-empty"></li><a href="#">Names</a>
+                                        </div>
+                                        <li class="divider"></li>
+                                        <div class="DropDownrow">
+                                            <li class="checked-empty"></li><a href="#">Columns...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                        <!--
+                            TERMINA BOTON COMPUESTO
+                        -->
+                        <!--
+                            INICIA DIVISION
+                        -->
+                        <div class="Divisor"></div>
+                        <!--
+                            TERMINA DIVISION
+                        -->
+                        <!--
+                            INICIA CONJUNTO DE BOTONES
+                        -->
+                        <!--
+                            TERMINA CONJUNTO DE BOTONES
+                        -->
+                    </div>
+                    <!-- TERMINA HERRAMIENTAS -->
+                    <!-- INICIA DESCRIPTOR -->
+                    <div class="ToolBarName">
+                        <a>Visualizacion de Datos</a>
+                    </div>
+                    <!-- ERMINA DESCRIPTOR -->
+                </div>
+            </div>
+            <!-- AQUI VAN LAS HERRAMIENTAS -->
+        </div>
+        <!-- TERMINA CINTA 3 -->
+        <!--
+
+            TERMINA ESPACIO DE DESARROLLO
+            
+        -->
+        <div class="Cinta">
+            <input type="radio" id="Cinta-4" name="Cinta-group-2">
+            <label for="Cinta-4">Por Pagar</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <!-- ESTE ESPACIO ES PARA EL DASHBOARD DE ANALITICOS DE CUENTAS POR PAGAR -->
+                        <h3>AQUI VAN LAS HERRAMIENTAS</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Visualizacion de Datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Cinta">
+            <input type="radio" id="Cinta-5" name="Cinta-group-2">
+            <label for="Cinta-5">Ventas</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <!-- ESTE ESPACIO ES PARA EL DASHBOARD DE ANALITICOS DE VENTAS -->
+                        <h3>AQUI VAN LAS HERRAMIENTAS</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Visualizacion de Datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Cinta">
+            <input type="radio" id="Cinta-6" name="Cinta-group-2">
+            <label for="Cinta-6">Compras</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <!-- ESTE ESPACIO ES PARA EL DASHBOARD DE ANALITICOS DE COMPRAS -->
+                        <h3>AQUI VAN LAS HERRAMIENTAS</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Visualizacion de Datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Cinta">
+            <input type="radio" id="Cinta-7" name="Cinta-group-2">
+            <label for="Cinta-7">Conexion de Datos</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <!--
+
+
+                            ESTE ESPACIO ES PRIORIDAD
+
+                            AQUI VA CONEXIONES A CONTPAQ, SAE, ETC
+                            AQUI VA MODELADOR DE DATOS, ES DECIR SUBES TU HOJA DE EXCEL Y LE PONES "TITULO" (VARIABLES)
+                            A TU HOJA EXCEL, COMO EL MACRO DE DANIEL, LA IDEA ES QUE SE GRABE COMO TU TEMPLATE Y ASI PUEDAS CARGAR INFORMACION
+                            DE TU CONTABILIDA EN EXCEL - UTILIZAR CUENTAS DE SAT Y DESGLOSAR CON CONTASOL - PREGUNTAR A SUEGRO
+
+
+                        -->
+                        <h3>AQUI VAN LAS HERRAMIENTAS</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Conexion de Datos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Cinta">
+            <input type="radio" id="Cinta-8" name="Cinta-group-2">
+            <label for="Cinta-8">Configuracion</label>
+            <div class="CintaWrapper">
+                <div class="ToolsContainer">
+                    <div class="ToolBar">
+                        <!--
+
+
+                            ESTE ESPACIO ES PARA EL USUARIO Y USUARIOS "DESIGNADOS"
+
+                            AQUI VA CONEXIONES A CUENTA DE FACEBOOK - NECESARIA? Y CUENTA DE GOOGLE NECESARIA
+                            
+                        -->
+                        <h3>AQUI VAN LAS HERRAMIENTAS</h3>
+                    </div>
+                    <div class="ToolBarName">
+                        <a>Configuracion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    TERMINA
+    ESTRUCTURA DE CINTAS (TABS)
+-->
+    <!--
+    INCIA
+    ESTRUCTURA DE TOOL-TABS
+-->
+    <!-- Tab content 
+
+    content == tabcontent
+
+<div id="Empresa" class="Cintacontent">
+    <div class="ToolsContainer">
+        <div class="ToolBar">
+            <h3>Empresa</h3>
+        </div>
+        <div class="ToolBarName">
+            <a>Edicion de Empresa</a>
+        </div>
+    </div>
+</div>-->
+</body>
+
+</html>

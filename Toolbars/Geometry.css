@@ -1,0 +1,12 @@
+/* Debe ser el numero de botones + 90px*/
+#xTools {
+    width: 270px;
+}
+
+#yTools {
+    width: 135px;
+}
+
+#zTools {
+    width: 405px;
+}

@@ -1,0 +1,751 @@
+
+
+<style>
+  /*===============================================================
+                                                                App
+  */
+    .cf:before,
+    .cf:after {
+      content: "";
+      display: table;
+    }
+    .cf:after {
+      clear: both;
+    }
+    
+    body {
+      background-color: #bac6d8;
+      /*
+      background: linear-gradient(140deg, #d6ebf7 , #bac6d8,  #c5f8f3b0  );
+      /*background-image: linear-gradient(115deg, #fff8ea 0, #bac6d8 50%, #7195c6 100%);*/
+background: -webkit-linear-gradient(300deg, rgba(198,234,246,1) 0%,rgba(193,230,238,1) 30%, rgba(191,237,227,0.8) 60%, rgba(191,237,227,1) 100%); /* Chrome10-25,Safari5.1-6 */
+
+      color: #fff;
+      font: 14px/18px Arial, sans-serif;
+      text-align: center;
+      top:0;
+    left:0;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    }
+    p {
+      bottom: 10px;
+      left: 10px;
+      position: absolute;
+    }
+    .boton a {
+      color: #fff;
+    }
+    </style>
+    <style>
+    /*===============================================================
+                                                              TOOLBAR
+    */
+    :root{
+        --CommandBg: #9eacbe7e;;
+        --FillSvg:#40648ab6;
+    }
+    .ToolbarRow {
+      width: 100vw;
+      height: fit-content;
+    left: 0;
+      top: 20px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+      padding: 0;
+      margin-left: 1px;
+      margin-top: 0px;
+      margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: var(--CommandBg);
+      box-shadow: 0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f52;
+}
+    .Toolbar {
+        overflow-x: auto;
+      left: 0%;
+      margin: 0;
+      position: relative;
+      top: 0%;
+      padding: 0;
+      margin-left: 5px;
+      margin-top: 1px;
+      margin-bottom: 5px;
+      border-radius: 4px;
+      box-shadow: 0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f/*,
+        0 12px 18px rgba(64, 100, 138, 0.4)*/;
+        background: #a9b6c8;
+    }
+    .espacio {
+    float: left;
+    list-style: none;
+    width: 90px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: #3b5c7f;
+}
+    .Toolbar .boton {
+      float: left;
+      list-style: none;
+      width: 45px;
+      height:45px;
+    }
+    .boton a {
+      background: rgba(244, 247, 249,0.15);
+      background: -moz-linear-gradient(
+        top,
+        rgba(244, 247, 249,0.5) 0%,
+        rgba(247, 250, 253,0.5) 4%,
+        rgba(236, 242, 247,0.5) 30%,
+        rgba(228, 235, 243,0.5) 68%,
+        rgba(220, 228, 238,0.5) 89%,
+        rgba(213, 224, 235,0.5) 92%,
+        rgba(199, 211, 224,0.5) 96%,
+      );
+      background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, #f4f7f9),
+        color-stop(4%, #f7fafd),
+        color-stop(30%, #ecf2f7),
+        color-stop(68%, #e4ebf3),
+        color-stop(89%, #dce4ee),
+        color-stop(92%, #d5e0eb),
+        color-stop(96%, #c7d3e0),
+        color-stop(100%, #c6d2df)
+      );
+      background: -webkit-linear-gradient(
+        top,
+        rgba(244, 247, 249,0.5) 0%,
+        rgba(247, 250, 253,0.5) 4%,
+        rgba(236, 242, 247,0.5) 30%,
+        rgba(228, 235, 243,0.5) 68%,
+        rgba(220, 228, 238,0.5) 89%,
+        rgba(213, 224, 235,0.5) 92%,
+        rgba(199, 211, 224,0.5) 96%,
+      );
+      background: -o-linear-gradient(
+        top,
+        rgba(244, 247, 249,0.5) 0%,
+        rgba(247, 250, 253,0.5) 4%,
+        rgba(236, 242, 247,0.5) 30%,
+        rgba(228, 235, 243,0.5) 68%,
+        rgba(220, 228, 238,0.5) 89%,
+        rgba(213, 224, 235,0.5) 92%,
+        rgba(199, 211, 224,0.5) 96%,
+      );
+      background: -ms-linear-gradient(
+        top,
+        rgba(244, 247, 249,0.5) 0%,
+        rgba(247, 250, 253,0.5) 4%,
+        rgba(236, 242, 247,0.5) 30%,
+        rgba(228, 235, 243,0.5) 68%,
+        rgba(220, 228, 238,0.5) 89%,
+        rgba(213, 224, 235,0.5) 92%,
+        rgba(199, 211, 224,0.5) 96%,
+      );
+      background: linear-gradient(
+        to bottom,
+        rgba(244, 247, 249,0.5) 0%,
+        rgba(247, 250, 253,0.5) 4%,
+        rgba(236, 242, 247,0.5) 30%,
+        rgba(228, 235, 243,0.5) 68%,
+        rgba(220, 228, 238,0.5) 89%,
+        rgba(213, 224, 235,0.5) 92%,
+        rgba(199, 211, 224,0.5) 96%,
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f7f9', endColorstr='#c6d2df',GradientType=0 );
+      border-left: 1px solid rgba(79, 123, 170, 0.4);
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+      color: #40648a;
+      display: block;
+      font-size: 27px;
+      height: 45px;
+      line-height: 45px;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #fff;
+    }
+    .Toolbar li:first-child a {
+      border-left: none;
+      border-radius: 4px 0 0 4px;
+    }
+    .Toolbar li:last-child a {
+      border-right: none;
+      border-radius: 0 4px 4px 0;
+    }
+    .boton a{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    }
+    .boton a:hover {
+      background: #aac5e0;
+      background: -moz-linear-gradient(
+        top,
+        #aac5e0 0%,
+        #adc8e4 4%,
+        #a2c0de 30%,
+        #9ab9da 68%,
+        #92b2d5 89%,
+        #8baed2 92%,
+        #7da1c7 96%,
+        #7ca0c6 100%
+      );
+      background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, #aac5e0),
+        color-stop(4%, #adc8e4),
+        color-stop(30%, #a2c0de),
+        color-stop(68%, #9ab9da),
+        color-stop(89%, #92b2d5),
+        color-stop(92%, #8baed2),
+        color-stop(96%, #7da1c7),
+        color-stop(100%, #7ca0c6)
+      );
+      background: -webkit-linear-gradient(
+        top,
+        #aac5e0 0%,
+        #adc8e4 4%,
+        #a2c0de 30%,
+        #9ab9da 68%,
+        #92b2d5 89%,
+        #8baed2 92%,
+        #7da1c7 96%,
+        #7ca0c6 100%
+      );
+      background: -o-linear-gradient(
+        top,
+        #aac5e0 0%,
+        #adc8e4 4%,
+        #a2c0de 30%,
+        #9ab9da 68%,
+        #92b2d5 89%,
+        #8baed2 92%,
+        #7da1c7 96%,
+        #7ca0c6 100%
+      );
+      background: -ms-linear-gradient(
+        top,
+        #aac5e0 0%,
+        #adc8e4 4%,
+        #a2c0de 30%,
+        #9ab9da 68%,
+        #92b2d5 89%,
+        #8baed2 92%,
+        #7da1c7 96%,
+        #7ca0c6 100%
+      );
+      background: linear-gradient(
+        to bottom,
+        #aac5e0 0%,
+        #adc8e4 4%,
+        #a2c0de 30%,
+        #9ab9da 68%,
+        #92b2d5 89%,
+        #8baed2 92%,
+        #7da1c7 96%,
+        #7ca0c6 100%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aac5e0', endColorstr='#7ca0c6',GradientType=0 );
+      color: #fff;
+      text-shadow: 0 1px 0 #40648a;
+    }
+    .boton a:active {
+      background: #8aafd5;
+      background: -moz-linear-gradient(
+        top,
+        #8aafd5 0%,
+        #8db2d9 4%,
+        #82aad3 30%,
+        #7aa3cf 68%,
+        #729cca 89%,
+        #6b98c7 92%,
+        #5d8bbc 96%,
+        #5c8abb 100%
+      );
+      background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, #8aafd5),
+        color-stop(4%, #8db2d9),
+        color-stop(30%, #82aad3),
+        color-stop(68%, #7aa3cf),
+        color-stop(89%, #729cca),
+        color-stop(92%, #6b98c7),
+        color-stop(96%, #5d8bbc),
+        color-stop(100%, #5c8abb)
+      );
+      background: -webkit-linear-gradient(
+        top,
+        #8aafd5 0%,
+        #8db2d9 4%,
+        #82aad3 30%,
+        #7aa3cf 68%,
+        #729cca 89%,
+        #6b98c7 92%,
+        #5d8bbc 96%,
+        #5c8abb 100%
+      );
+      background: -o-linear-gradient(
+        top,
+        #8aafd5 0%,
+        #8db2d9 4%,
+        #82aad3 30%,
+        #7aa3cf 68%,
+        #729cca 89%,
+        #6b98c7 92%,
+        #5d8bbc 96%,
+        #5c8abb 100%
+      );
+      background: -ms-linear-gradient(
+        top,
+        #8aafd5 0%,
+        #8db2d9 4%,
+        #82aad3 30%,
+        #7aa3cf 68%,
+        #729cca 89%,
+        #6b98c7 92%,
+        #5d8bbc 96%,
+        #5c8abb 100%
+      );
+      background: linear-gradient(
+        to bottom,
+        #8aafd5 0%,
+        #8db2d9 4%,
+        #82aad3 30%,
+        #7aa3cf 68%,
+        #729cca 89%,
+        #6b98c7 92%,
+        #5d8bbc 96%,
+        #5c8abb 100%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8aafd5', endColorstr='#5c8abb',GradientType=0 );
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3) inset;
+      text-shadow: 0 -1px 0 #40648a;
+    }
+    .BtnIcon{
+        width: 30px;
+        height: 33px;
+    }
+    .BtnIcon {
+        filter: 
+    invert(0.35)
+    sepia(1)
+    hue-rotate(190deg)
+    saturate(3)
+    brightness(0.8);
+    }
+    .BtnIcon:hover {
+        filter: 
+    invert(0.7)
+    sepia(0.6)
+    hue-rotate(190deg)
+    saturate(3)
+    brightness(1);
+    }
+    /* Debe ser el numero de botones + 90px*/
+    #xTools{
+      width: 270px;
+      }
+    #yTools{
+      width: 135px;
+      }
+    #zTools{
+      width: 405px;
+      }
+</style>
+<style>
+  .CommandBand{
+    position: absolute;
+    left: 0;
+    margin: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0px;
+    box-shadow: none;
+    background-color: var(--CommandBg);
+    height: 20px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
+}
+    .CommandBar {
+      position: relative;
+      width: 80vw;
+     /* border-bottom-color: #1a2e44;
+      border-bottom-width:  2px;
+      border-bottom-style: solid;*/
+      /*
+      box-shadow: 0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f52;
+      */
+      font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    }
+    .dropbtn {
+      background-color: transparent;
+      color: #3b5c7f;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-left: 10px;
+      padding-right: 10px;
+      /*font-size: 16px;*/
+      border: none;
+    }
+    .dropbtn:hover {
+      background-color: #3b5c7f52;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      /*background-color: #f1f1f1;*/
+      background: #a9b6c8;
+      min-width: 160px;
+      box-shadow:  0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f/*, 0 12px 18px rgba(64, 100, 138, 0.4)*/;
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+        color: #3b5c7f;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #8aafd5;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    .CommandMsg{
+      width: 20vh;
+      position: relative;
+      color: #3b5c7f;
+    }
+    
+    </style>
+    
+<div class="CommandBand">
+<div class="CommandBar">
+    
+    <div class="dropdown">
+        <button class="dropbtn">File</button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Projects</button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Regressors</button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Datasets</button>
+      <div class="dropdown-content">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div>
+</div>
+<div class="CommandMsg">
+<strong>PYME Tools </strong><small> Baja Analytics</small>
+</div></div></div>
+
+<div class="ToolbarRow">
+<ul class="toolbar cf" id="xTools">
+    <li class="boton"><a href="#"><img src="./img/save.svg" class="BtnIcon" title="Save"/><i class="icon-home"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-heart-empty"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-comments-alt"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-comments-alt"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+  </ul>
+  <ul class="toolbar cf" id="yTools">
+    <!--li class="espacio"><a>xTools</a></li-->
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-comments-alt"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+  </ul>
+  <ul class="toolbar cf" id="zTools">
+    <!--li class="espacio"><a>xTools</a></li-->
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-comments-alt"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-comments-alt"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-comments-alt"></i></a></li>
+    <li class="boton"><a href="#"><i class="icon-cloud"></i></a></li>
+  </ul>
+</div>
+<!--
+    
+    
+    
+    
+    
+    
+    
+    FUNCIONA EN W3SCHOOL:
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapse_sidebar
+    https://www.w3schools.com/howto/howto_js_tabs.asp
+    REVISAR SIN SUEÑO
+
+    CAMBIAR VISAULMENTE LAS TAGS POR LAS DE GOOGLE:
+    https://fonts.google.com/icons?icon.query=save&icon.style=Sharp&icon.platform=web
+
+    QUE QUEDE ASI DE PRO
+    https://www.predictiveanalyticstoday.com/wp-content/uploads/2015/02/New-Version-of-SAP-Business-One-Application-1-1000x725.png
+    https://www.mtcsys.us/hubfs/Imported_Blog_Media/sap-business-one-9-2-patch-level-06-highlights-3.jpg
+    https://blogs.sap.com/wp-content/uploads/2016/07/06pc_997586.png
+    https://i.ytimg.com/vi/Waq2AgGCMrA/maxresdefault.jpg
+    https://www.axalphaconsulting.com/blog/wp-content/uploads/2021/10/arbol-documentos.jpg
+    https://sap-b1-blog.com/wp-content/uploads/2022/04/SAP-Business-One-Finsnzwesen-Kontenplan.png
+    https://mgssoft.com/wp-content/uploads/2020/01/Integration-Hub-Sap-business-one-10.jpg
+    https://orekait.com/blog/wp-content/uploads/2021/07/migra-1-1024x546.png
+
+
+
+
+
+-->
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  top:0;
+  left:0;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 0px;
+  top:0;
+  left:0;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+<style>
+ /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+} 
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+<script>
+function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+} 
+</script>
+</head>
+<body>
+<div id="main">
+<div id="mySidebar" class="sidebar">
+
+ <!-- Tab links --
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<!-- Tab content --
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div> 
+
+</div>
+
+
+  <div id="openbtn" >
+  <button class="openbtn" onclick="openNav()">☰</button>
+  </div></div>
+  <h2>Collapsed Sidebar</h2>
+  <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+      document.getElementById("openbtn").innerHTML='<button class="openbtn" onclick="closeNav()">x</button>';
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+      document.getElementById("openbtn").innerHTML='<button class="openbtn" onclick="openNav()">☰</button>';
+}
+</script-->
+   
+</body>
+</html> 

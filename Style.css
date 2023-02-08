@@ -1,0 +1,248 @@
+/*===============================================================
+                                                    Commands Band
+*/
+.CommandBand{
+    position: absolute;
+    left: 0;
+    margin: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0px;
+    box-shadow: none;
+    background-color: var(--CommandBg);
+    height: 20px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
+}
+    .CommandBar {
+      position: relative;
+      width: 80vw;
+     /* border-bottom-color: #1a2e44;
+      border-bottom-width:  2px;
+      border-bottom-style: solid;*/
+      /*
+      box-shadow: 0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f52;
+      */
+      font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    }
+    .dropbtn {
+      background-color: transparent;
+      color: #3b5c7f;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-left: 10px;
+      padding-right: 10px;
+      /*font-size: 16px;*/
+      border: none;
+    }
+    .dropbtn:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      /*background-color: #f1f1f1;*/
+      background: rgba(255, 255, 255, 0.75);
+      min-width: 160px;
+      box-shadow:  0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f/*, 0 12px 18px rgba(64, 100, 138, 0.4)*/;
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+        color: #3b5c7f;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #8aafd5;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    .CommandMsg{
+      width: 20vh;
+      position: relative;
+      color: #3b5c7f;
+    }
+/*===============================================================
+                                                                App
+  */
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+body {
+    background-color: #bac6d8;
+    /*
+    background: linear-gradient(140deg, #d6ebf7 , #bac6d8,  #c5f8f3b0  );
+    /*background-image: linear-gradient(115deg, #fff8ea 0, #bac6d8 50%, #7195c6 100%);*/
+    background: radial-gradient(ellipse at top, rgb(150, 100, 230,0.2), transparent),
+    radial-gradient(ellipse at bottom, rgb(14, 136, 167,0.2), transparent), -webkit-linear-gradient(300deg, rgba(198, 234, 246, 1) 0%, rgba(193, 230, 238, 1) 30%, rgba(191, 237, 227, 0.8) 60%, rgba(191, 237, 227, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+
+    color: #fff;
+    font: 14px/18px Arial, sans-serif;
+    text-align: center;
+    top: 0;
+    left: 0;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+p {
+    bottom: 10px;
+    left: 10px;
+    position: absolute;
+}
+
+/*===============================================================
+                                                          TOOLBAR
+*/
+
+.ToolbarRow {
+    width: 100vw;
+    height: fit-content;
+    left: 0;
+    top: 20px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    padding: 0;
+    margin-left: 1px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: var(--CommandBg);
+    box-shadow: 0 0 3px rgba(64, 100, 138, 0.3), 0 2px 4px #3b5c7f52;
+}
+
+.Toolbar {
+    overflow-x: auto;
+    left: 0%;
+    margin: 0;
+    position: relative;
+    top: 0%;
+    padding: 0;
+    margin-left: 5px;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(64, 100, 138, 0.1), 0 2px 4px rgba(59, 92, 127,0.4)
+        /*,
+    0 12px 18px rgba(64, 100, 138, 0.4)*/
+    ;
+    background: #a9b6c8;
+}
+
+.espacio {
+    float: left;
+    list-style: none;
+    width: 90px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: #3b5c7f;
+}
+
+.Toolbar .boton {
+    float: left;
+    list-style: none;
+    width: 45px;
+    height: 45px;
+}
+
+.boton a {
+    background: rgba(255, 255, 255, 0.75);
+    border-left: 1px solid rgba(79, 123, 170, 0.4);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    color: #40648a;
+    display: block;
+    font-size: 27px;
+    height: 45px;
+    line-height: 45px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.Toolbar li:first-child a {
+    border-left: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.Toolbar li:last-child a {
+    border-right: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.boton a {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton a:hover {
+    background: #aac5e0;
+    color: #fff;
+    text-shadow: 0 1px 0 #40648a;
+}
+
+.boton a {
+    color: #fff;
+}
+
+.boton a:active {
+    background: #8aafd5;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3) inset;
+    text-shadow: 0 -1px 0 #40648a;
+}
+
+.BtnIcon {
+    width: 30px;
+    height: 33px;
+}
+
+.BtnIcon {
+    filter:
+        invert(0.35) sepia(1) hue-rotate(190deg) saturate(3) brightness(0.8);
+}
+
+.BtnIcon:hover {
+    filter:
+        invert(0.7) sepia(0.6) hue-rotate(190deg) saturate(3) brightness(1);
+}

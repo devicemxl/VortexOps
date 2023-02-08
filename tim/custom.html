@@ -1,0 +1,32 @@
+<html>
+   <head>
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/riot/3.13.2/riot+compiler.min.js"></script>
+   </head>
+   <body>
+      <style>
+      :root {
+         --CommandBg: rgba(232, 242, 255, 0.5);
+         --FillSvg: #40648ab6;
+     }
+          body {
+              background-color: #bac6d8;
+              background: radial-gradient(ellipse at top, rgb(150, 100, 230, 0.2), transparent),
+                  radial-gradient(ellipse at bottom, rgb(14, 136, 167, 0.2), transparent), -webkit-linear-gradient(300deg, rgba(198, 234, 246, 1) 0%, rgba(193, 230, 238, 1) 30%, rgba(191, 237, 227, 0.8) 60%, rgba(191, 237, 227, 1) 100%);
+              color: #fff;
+              font: 14px/18px Arial, sans-serif;
+              text-align: center;
+              top: 0;
+              left: 0;
+              position: absolute;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+          }
+      </style>
+      <CommandBar></CommandBar>
+      <script src = "./CommandBar.tag" type = "riot/tag"></script>
+      <script>
+         riot.mount("CommandBar");
+      </script>
+   </body>
+</html>

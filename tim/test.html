@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+file: StyleGuide.md
+Version: 01.01.01 {Major Version, minor change, little bug}
+Upgrade: created
+Date format: 20230128001700
+description: Style Guidelines
+Utility: Scrap buster
+DataDict: ''
+Return: order
+Citation:  https://guides.lib.berkeley.edu/how-to-write-good-documentation (berkley), developer documentation style guide (google)
+License: Copyright, All right reserved david ochoa 2022
+Authors: david.ochoa.corrales@gmail.com
+-->
+<html>
+
+<head>
+    <script type="text/javascript" src="./jquery.1.11.1.js"></script>
+    <script src="./tim.min.js"></script>
+    <script src="./json.js"></script>
+</head>
+
+<body>
+    <div id="someelement"></div>
+    <script>
+        var tmpl = '<div id="person-{{name}}">\
+ <p>Name: {{name}}</p>\
+ <p>Description: {{description}}</p>\
+ </div>';
+        /*
+        var json = {
+            "people": [
+                {
+                    "name": "person1",
+                    "description": "This is a brief description of my service.",
+                    "image": "mandg1.jpg",
+                    "type": "first",
+                    "insured": "yes",
+                    "license": "N\/A",
+                    "picture": "mandg1.jpg",
+                    "yearsinbusiness": "8",
+                    "distance": 15
+                },
+                {
+                    "name": "person2",
+                    "description": "This is a brief description of my service.",
+                    "image": "mandg2.jpg",
+                    "type": "second",
+                    "insured": "yes",
+                    "license": "N\/A",
+                    "picture": "mandg2.jpg",
+                    "yearsinbusiness": "8",
+                    "distance": 19
+                }
+            ]
+        };*/
+        var uno, mas = '';
+        $.each(json.people, function (i, person) { mas += tim(tmpl, person); });
+        if (mas != 'none') { document.getElementById("someelement").innerHTML = mas } else { document.getElementById("someelement").innerHTML = mas };
+/*$('#someelement').html(html);*/
+    </script>
+</body>
+<!--
+Notes:
+Adapt this to Riot tag to use in index2.html as toolbar prototipe
+libraries direct in index2.html
+-->
